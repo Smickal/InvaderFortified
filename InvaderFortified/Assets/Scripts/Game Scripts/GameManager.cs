@@ -101,10 +101,14 @@ public class GameManager : MonoBehaviour
     void RefreshUpgradePanel()
     {
         SpawnMinions factorySelected = ClickedBtn.GetComponent<Shop>().GetTowerPrefab().GetComponentInChildren<SpawnMinions>();
+        UpgradeAttributes upgradeAttributes = factorySelected.GetComponent<UpgradeAttributes>();
 
         upgradePanel.SetTowerAttributes(factorySelected.turretName, factorySelected.factoryHP, factorySelected.maxFactoryHP,factorySelected.turretDamage, factorySelected.turretRange,
             factorySelected.fireRate, factorySelected.delayBetweenSpawns);
+        upgradePanel.SetUpgradeAttributes(upgradeAttributes.damageUpgrade, upgradeAttributes.rangeUpgrade);
+
         upgradePanel.EnableUpgradePanelWhenButtoneClicked();
+
     }
     
     public void BuyTower()

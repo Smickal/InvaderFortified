@@ -244,8 +244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70a2ecc53e4f9247958accd9a2010e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageUpgrade: 1
-  rangeUpgrade: 1
+  damageUpgrade: 5
+  rangeUpgrade: 2
   maxHPFactoryUpgrade: 20
   damageUpgradePrice: 10
   rangeUpgradePrice: 10

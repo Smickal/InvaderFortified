@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public bool isAOE = false;
+    public float aoeRange = 2f;
+    public LayerMask enemyMask;
     private Transform target;
-
+    
     Rigidbody2D bulletRigid;
     float speed;
     float bulletDamage;
 
     Vector2 getStartingPos;
+    
 
     public void Seek(Transform _target)
     {
@@ -55,7 +59,18 @@ public class Bullet : MonoBehaviour
             //check health
             Enemy enemy = collision.GetComponent<Enemy>();
             //Reduce health
-            enemy.TakeDamage(bulletDamage);
+            if(!isAOE)
+            {
+                enemy.TakeDamage(bulletDamage);
+            }
+            else
+            {
+                Collider2D[] col = Physics2D.OverlapCircleAll(collision.transform.position, aoeRange, enemyMask);
+                foreach(Collider2D enem in col)
+                {
+                    enem.GetComponent<Enemy>().TakeDamage(bulletDamage);
+                }
+            }
             Destroy(gameObject);
         }
 

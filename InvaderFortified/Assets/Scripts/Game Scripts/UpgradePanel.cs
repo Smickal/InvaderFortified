@@ -11,24 +11,29 @@ public class UpgradePanel : MonoBehaviour
     [SerializeField] private Text factoryHP;
     [SerializeField] private Text minionDamage;
     [SerializeField] private Text minionFireRate;
-    [SerializeField] private Text recoveryRate;
+    //[SerializeField] private Text recoveryRate;
     [SerializeField] private Text rangeText;
     [SerializeField] GameObject upgradeGroups;
 
     [Header("Upgrade Buttons")]
     [SerializeField] Button damageIncreaseButton;
     [SerializeField] Button rangeIncreaseButton;
-    [SerializeField] Button recoverHealthButton;
-    [SerializeField] Button increaseMaxFactoryUpgradeButton;
+    //[SerializeField] Button recoverHealthButton;
+    //[SerializeField] Button increaseMaxFactoryUpgradeButton;
     [SerializeField] Button cancelButton;
 
-    [Header("Upgrade Text")]
+    [Header("Upgrade Text_Attack")]
     [SerializeField] GameObject damageText;
+    [SerializeField] Text attackNumText;
     [SerializeField] GameObject damageTextDisabled;
+
+    [Header("Upgrade Text_Range")]
     [SerializeField] GameObject rangeTexT;
+    [SerializeField] Text rangeNumText;
     [SerializeField] GameObject rangeTextDisabled;
-    [SerializeField] GameObject maxHPText;
-    [SerializeField] GameObject maXHPTextDisabled;
+
+    //[SerializeField] GameObject maxHPText;
+    //[SerializeField] GameObject maXHPTextDisabled;
 
     public bool isUpgradePanelActivated = false;
     allNodes allnode;
@@ -38,7 +43,7 @@ public class UpgradePanel : MonoBehaviour
         allnode = FindObjectOfType<allNodes>();
         damageTextDisabled.SetActive(false);
         rangeTextDisabled.SetActive(false);
-        maXHPTextDisabled.SetActive(false);
+        //maXHPTextDisabled.SetActive(false);
     }
     public void SetTowerAttributes(string towerName, float factoryHP, float maxFactoryHP,
         float minionDamage, float turretRange,float minionFireRate,
@@ -49,9 +54,18 @@ public class UpgradePanel : MonoBehaviour
         this.minionDamage.text = "Damage: " + minionDamage.ToString();
         this.minionFireRate.text = "Fire rate: " + minionFireRate.ToString();
         rangeText.text = "Range: " + turretRange.ToString();
-        recoveryRate.text = "Recovery rate: " + minionRecoveryRate.ToString() + " seconds";
+        //recoveryRate.text = "Recovery rate: " + minionRecoveryRate.ToString() + " seconds";
     }
     
+    public void SetUpgradeAttributes(float damageNum, float rangeNum)
+    {
+        string tempAttstr = "Attack +" + damageNum;
+        string tempRangeStr = "Range +" + rangeNum;
+
+        attackNumText.text = tempAttstr;
+        rangeNumText.text = tempRangeStr;
+    }
+
 
     public void UpdateHP(float factoryHP, float maxFactoryHP)
     {
@@ -111,19 +125,19 @@ public class UpgradePanel : MonoBehaviour
         }
     }
 
-    public void CheckMaxHpText(bool check)
-    {
-        if (check)
-        {
-            maxHPText.SetActive(true);
-            maXHPTextDisabled.SetActive(false);
-        }
-        else
-        {
-            maxHPText.SetActive(false);
-            maXHPTextDisabled.SetActive(true);
-        }
-    }
+    //public void CheckMaxHpText(bool check)
+    //{
+    //    if (check)
+    //    {
+    //        maxHPText.SetActive(true);
+    //        maXHPTextDisabled.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        maxHPText.SetActive(false);
+    //        maXHPTextDisabled.SetActive(true);
+    //    }
+    //}
 
 
 }

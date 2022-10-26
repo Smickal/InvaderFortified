@@ -48,8 +48,8 @@ public class Node : MonoBehaviour
         {
             damageIncreaseButton.onClick.AddListener(UpgradeDamage);
             rangeIncreaseButton.onClick.AddListener(UpgradeRange);
-            recoverHealthButton.onClick.AddListener(HealCurrentFactory);
-            increaseMaxFactoryUpgradeButton.onClick.AddListener(UpgradeMaxHP);
+           // recoverHealthButton.onClick.AddListener(HealCurrentFactory);
+            //increaseMaxFactoryUpgradeButton.onClick.AddListener(UpgradeMaxHP);
             cancelButton.onClick.AddListener(parentNodes.DisableAllPreviews);
         }
         deleteFactoryButton.onClick.AddListener(DeleteCurrentFactory);
@@ -205,11 +205,12 @@ public class Node : MonoBehaviour
         {
             
             spawnMinions = turret.GetComponentInChildren<SpawnMinions>();
+            UpgradeAttributes upgradeAttributes = spawnMinions.GetComponent<UpgradeAttributes>();
             upgradePanel.SetTowerAttributes(spawnMinions.turretName, spawnMinions.factoryHP, spawnMinions.maxFactoryHP,
                     spawnMinions.turretDamage, spawnMinions.turretRange,
                     spawnMinions.fireRate, spawnMinions.delayBetweenSpawns);
-            
 
+            upgradePanel.SetUpgradeAttributes(upgradeAttributes.damageUpgrade, upgradeAttributes.rangeUpgrade);
         }
         if(isCalledButton == false)
         {
@@ -276,25 +277,25 @@ public class Node : MonoBehaviour
         }
     }
 
-    void UpgradeMaxHP()
-    {
-        if (isCurrentNodeSelected)
-        {
-            UpgradeAttributes factoryUpgradeAttributes = turret.GetComponentInChildren<UpgradeAttributes>();
-            if (factoryUpgradeAttributes.CheckMaxHPCounter())
-            {
-                factoryUpgradeAttributes.IncreaseMaxFactoryHP();
-                RefreshUpdatePanel();
-                upgradePanel.EnableUpgradePanel();
-            }
-            else
-            {
-                increaseMaxFactoryUpgradeButton.enabled = false;
-                upgradePanel.CheckMaxHpText(false);
-            }
-        }
+    //void UpgradeMaxHP()
+    //{
+    //    if (isCurrentNodeSelected)
+    //    {
+    //        UpgradeAttributes factoryUpgradeAttributes = turret.GetComponentInChildren<UpgradeAttributes>();
+    //        if (factoryUpgradeAttributes.CheckMaxHPCounter())
+    //        {
+    //            factoryUpgradeAttributes.IncreaseMaxFactoryHP();
+    //            RefreshUpdatePanel();
+    //            upgradePanel.EnableUpgradePanel();
+    //        }
+    //        else
+    //        {
+    //            increaseMaxFactoryUpgradeButton.enabled = false;
+    //            upgradePanel.CheckMaxHpText(false);
+    //        }
+    //    }
 
-    }
+    //}
 
   void CheckCurrentUpgradeCounter()
     {
@@ -305,7 +306,7 @@ public class Node : MonoBehaviour
 
         upgradePanel.CheckDamageText(checkDamage);
         upgradePanel.CheckRangeText(checkRange);
-        upgradePanel.CheckMaxHpText(checkMaxHP);
+        //upgradePanel.CheckMaxHpText(checkMaxHP);
 
         if (checkDamage) damageIncreaseButton.enabled = true;
         else damageIncreaseButton.enabled = false;

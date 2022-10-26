@@ -5,8 +5,8 @@ using UnityEngine;
 public class UpgradeAttributes : MonoBehaviour
 {
     [Header("Upgrade Details")]
-    [SerializeField] int damageUpgrade = 1;
-    [SerializeField] int rangeUpgrade = 1;
+    [SerializeField] public int damageUpgrade = 1;
+    [SerializeField] public int rangeUpgrade = 1;
     [SerializeField] int maxHPFactoryUpgrade = 20;
 
     [Header("Upgrade Price")]
@@ -31,13 +31,14 @@ public class UpgradeAttributes : MonoBehaviour
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
-        upgradePanel = FindObjectOfType<UpgradePanel>();
+        
     }
     
     public void UpgradeDamage()
     {
         //edit all current minion damage
         //set the new damage as standard damage
+        upgradePanel = FindObjectOfType<UpgradePanel>();
         if (gameManager.Currency >= damageUpgradePrice && currentDamageCounter != damageCounter)
         {
             Turrets[] currentTurrets = GetComponentsInChildren<Turrets>();
@@ -58,7 +59,8 @@ public class UpgradeAttributes : MonoBehaviour
 
     public void UpgradeRange()
     {
-        if(gameManager.Currency >= rangeUpgradePrice)
+        upgradePanel = FindObjectOfType<UpgradePanel>();
+        if (gameManager.Currency >= rangeUpgradePrice)
         {
             Turrets[] currentTurrets = GetComponentsInChildren<Turrets>();
             float tempNewRange = spawnMinions.turretRange + rangeUpgrade;
@@ -84,19 +86,19 @@ public class UpgradeAttributes : MonoBehaviour
         }
     }
 
-    public void IncreaseMaxFactoryHP()
-    {
-        if (gameManager.Currency >= maxFactoryUpgradePrice)
-        {
-            float tempMaxFactoryHP = spawnMinions.maxFactoryHP + maxHPFactoryUpgrade;
-            spawnMinions.maxFactoryHP = tempMaxFactoryHP;
+    //public void IncreaseMaxFactoryHP()
+    //{
+    //    if (gameManager.Currency >= maxFactoryUpgradePrice)
+    //    {
+    //        float tempMaxFactoryHP = spawnMinions.maxFactoryHP + maxHPFactoryUpgrade;
+    //        spawnMinions.maxFactoryHP = tempMaxFactoryHP;
 
-            gameManager.Currency -= maxFactoryUpgradePrice;
-            currentMaxHPCounter++;
-            if (currentMaxHPCounter == maxHPCounter)
-                upgradePanel.CheckMaxHpText(false);
-        }
-    }
+    //        gameManager.Currency -= maxFactoryUpgradePrice;
+    //        currentMaxHPCounter++;
+    //        if (currentMaxHPCounter == maxHPCounter)
+    //            upgradePanel.CheckMaxHpText(false);
+    //    }
+    //}
 
     public bool CheckDamageCounter()
     {

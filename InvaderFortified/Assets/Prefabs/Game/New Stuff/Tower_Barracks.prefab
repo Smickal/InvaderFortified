@@ -320,6 +320,7 @@ MonoBehaviour:
   factoryHP: 100
   maxFactoryHP: 100
   factoryCost: 500
+  maxMinion: 2
   turretName: Sniper Turret
   turretHP: 10
   turretRange: 8
@@ -340,8 +341,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e70a2ecc53e4f9247958accd9a2010e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageUpgrade: 1
-  rangeUpgrade: 1
+  damageUpgrade: 2
+  rangeUpgrade: 3
   maxHPFactoryUpgrade: 20
   damageUpgradePrice: 20
   rangeUpgradePrice: 10
